@@ -5,6 +5,7 @@ interface NamedPerson {
     firstName: string;
     age?: number;
     [propName: string]: any;
+    greet(lastName: string): void;
 }
 
 function greet(person: NamedPerson) {
@@ -15,11 +16,15 @@ function changeName(person: NamedPerson) {
     person.firstName = "Anna";
 }
 
-const person = {
+const person: NamedPerson = {
     firstName: "drake",
-    hobbies: ["cooking", "programming"]
+    hobbies: ["cooking", "programming"],
+    greet(lastName: string) {
+        console.log("Hi, I am " + this.firstName+ " " + lastName);
+    }
 };
 
-greet({firstName: "max", age: 20});
+// greet({firstName: "max", age: 20});
 changeName(person);
 greet(person);
+person.greet("Anything");
